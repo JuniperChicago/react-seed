@@ -5,13 +5,12 @@ var gulp       = require('gulp'),
     sass       = require('gulp-sass'),
     watch      = require('gulp-watch'),
     connect    = require('gulp-connect'),
-    clean      = require('gulp-clean');
+    del        = require('del');
 
-var ROOT = __dirname + '/build'
+var ROOT = __dirname + '/build';
 
-gulp.task('clean', function () {
- return gulp.src('build/', {read: false})
-        .pipe(clean());
+gulp.task('clean', function (cb) {
+ del('build/**/*',cb);
 });
 
 gulp.task('styles', function () {
@@ -66,3 +65,4 @@ gulp.task('default', ['build', 'webserver', 'watch']);
 
 // Live reload has an issue of loading react.js routes
 // gulp.task('default', ['build', 'webserver', 'livereload', 'watch']);
+
